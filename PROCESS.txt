@@ -1,0 +1,8 @@
+download SFML, visual studio
+create main.cpp, access properties, configure properties:
+- c/c++, general, additional include directories => add address of 'include' in SFML
+- c/c++, language, c++ language standard => set to 17 or 20
+- linker, general, additional library directories -> add address of 'lib' in sfml
+- linker, input, additional dependencies => add sfml-graphics-lib, sfml-window-lib, sfml-system-lib
+- 
+go to x64, copy all file from sfml\bin and paste to this file
