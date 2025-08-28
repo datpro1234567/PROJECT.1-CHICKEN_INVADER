@@ -1,0 +1,5 @@
+﻿  FileName.cpp
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\Bullet.h(18,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'FileName.cpp')
+  
+  Project2.vcxproj -> C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\x64\Debug\Project2.exe
