@@ -2,4 +2,13 @@
 C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\Bullet.h(18,19): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'FileName.cpp')
   
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(10,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(37,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(37,35): warning C4244:         with
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(37,35): warning C4244:         [
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(37,35): warning C4244:             T=float
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(37,35): warning C4244:         ]
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(52,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(52,30): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\Project2\FileName.cpp(57,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Project2.vcxproj -> C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT2\x64\Debug\Project2.exe
