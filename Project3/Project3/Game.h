@@ -1,0 +1,27 @@
+#pragma once
+#include <SFML/Graphics.hpp>
+#include "Player.h"
+#include "Enemy.h"
+#include <vector>
+#include <iostream>
+
+
+class ChickenInvader
+{
+public:
+	std::vector<Enemy> createArrayEnemy(float height, float width, int row, int col);
+
+	void playerBehavior(std::vector<Player>& players, float dt, float width, float height, std::vector<Bullet>& bullets);
+	void bulletBehavior(std::vector<Bullet>& bullets, float dt, float width);
+	void enemyBehavior(std::vector<Enemy>& enemys, std::vector<Bullet>& bullets, float dt,std::mt19937& gen);
+
+	void drawPlayer(std::vector<Player>& players, sf::RenderWindow& window);
+	void drawEnemy(std::vector<Enemy>& enemys, sf::RenderWindow& window);
+	void drawBullet(std::vector<Bullet>& bullets, sf::RenderWindow& window);
+
+	void bulletTouchEnemy(std::vector<Bullet>& bullets, std::vector<Enemy>& enemys);
+
+	void deleteDeadBullet(std::vector<Bullet>& bullets);
+	void deleteDeadEnemy(std::vector<Enemy>& enemys);
+	void game1();
+};

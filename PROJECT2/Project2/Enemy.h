@@ -29,7 +29,7 @@ public:
 		if (attackSpeed <= 0)
 		{
 			std::uniform_real_distribution<float> domain(0.00f, 1.f);
-			if (domain(gen) <= 0.05)
+			if (domain(gen) <= 0.5)
 			{
 				bullets.emplace_back(Bullet(shape.getPosition(), 150.f, false));
 			}

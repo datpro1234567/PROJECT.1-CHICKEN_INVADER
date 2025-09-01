@@ -1,0 +1,7 @@
+﻿  FileName.cpp
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\Project3\Project3\FileName.cpp(3,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Game.cpp
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\Project3\Project3\Game.cpp(105,14): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\Project3\Project3\Game.cpp(106,15): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+  Generating Code...
+  Project3.vcxproj -> C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\Project3\x64\Debug\Project3.exe
