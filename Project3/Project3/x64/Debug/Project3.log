@@ -1,7 +1,43 @@
-﻿  FileName.cpp
-C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\Project3\Project3\FileName.cpp(3,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
+﻿  Enemy.cpp
+  FileName.cpp
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\FileName.cpp(3,6): warning C4326: return type of 'main' should be 'int' instead of 'void'
   Game.cpp
-C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\Project3\Project3\Game.cpp(105,14): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\Project3\Project3\Game.cpp(106,15): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(172,14): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(173,15): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(224,3): error C2664: 'void ChickenInvader::playerBehavior(std::vector<Player,std::allocator<Player>> &,float,float,float,std::vector<Bullet,std::allocator<Bullet>> &)': cannot convert argument 1 from 'std::vector<AirCraft,std::allocator<AirCraft>>' to 'std::vector<Player,std::allocator<Player>> &'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(20,22):
+      see declaration of 'ChickenInvader::playerBehavior'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(224,3):
+      while trying to match the argument list '(std::vector<AirCraft,std::allocator<AirCraft>>, float, float, float, std::vector<Bullet,std::allocator<Bullet>>)'
+  
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(229,3): error C2664: 'void ChickenInvader::bulletTouchPlayer(std::vector<Bullet,std::allocator<Bullet>> &,std::vector<Player,std::allocator<Player>> &)': cannot convert argument 2 from 'std::vector<AirCraft,std::allocator<AirCraft>>' to 'std::vector<Player,std::allocator<Player>> &'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(93,22):
+      see declaration of 'ChickenInvader::bulletTouchPlayer'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(229,3):
+      while trying to match the argument list '(std::vector<Bullet,std::allocator<Bullet>>, std::vector<AirCraft,std::allocator<AirCraft>>)'
+  
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(230,3): error C2664: 'void ChickenInvader::playerTouchEnemy(std::vector<Player,std::allocator<Player>> &,std::vector<Enemy,std::allocator<Enemy>> &)': cannot convert argument 1 from 'std::vector<AirCraft,std::allocator<AirCraft>>' to 'std::vector<Player,std::allocator<Player>> &'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(119,22):
+      see declaration of 'ChickenInvader::playerTouchEnemy'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(230,3):
+      while trying to match the argument list '(std::vector<AirCraft,std::allocator<AirCraft>>, std::vector<Enemy,std::allocator<Enemy>>)'
+  
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(234,3): error C2664: 'void ChickenInvader::deleteDeadPlayer(std::vector<Player,std::allocator<Player>> &)': cannot convert argument 1 from 'std::vector<AirCraft,std::allocator<AirCraft>>' to 'std::vector<Player,std::allocator<Player>> &'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(146,22):
+      see declaration of 'ChickenInvader::deleteDeadPlayer'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(234,3):
+      while trying to match the argument list '(std::vector<AirCraft,std::allocator<AirCraft>>)'
+  
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(236,3): error C2664: 'void ChickenInvader::closeGame(std::vector<Player,std::allocator<Player>> &,sf::RenderWindow &)': cannot convert argument 1 from 'std::vector<AirCraft,std::allocator<AirCraft>>' to 'std::vector<Player,std::allocator<Player>> &'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(151,22):
+      see declaration of 'ChickenInvader::closeGame'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(236,3):
+      while trying to match the argument list '(std::vector<AirCraft,std::allocator<AirCraft>>, sf::RenderWindow)'
+  
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(239,3): error C2664: 'void ChickenInvader::drawPlayer(std::vector<Player,std::allocator<Player>> &,sf::RenderWindow &)': cannot convert argument 1 from 'std::vector<AirCraft,std::allocator<AirCraft>>' to 'std::vector<Player,std::allocator<Player>> &'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(46,22):
+      see declaration of 'ChickenInvader::drawPlayer'
+      C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Game.cpp(239,3):
+      while trying to match the argument list '(std::vector<AirCraft,std::allocator<AirCraft>>, sf::RenderWindow)'
+  
   Generating Code...
-  Project3.vcxproj -> C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\Project3\x64\Debug\Project3.exe

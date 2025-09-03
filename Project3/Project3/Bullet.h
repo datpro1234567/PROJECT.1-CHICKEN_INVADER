@@ -13,7 +13,7 @@ public:
 	bool getAlive();
 	sf::CircleShape getShape();
 	float getDamage();
-	void setAlive(bool alive);
+	void setAlive(bool alive);	
 	void move(float dt);
 	void reachBorder(float width);
 

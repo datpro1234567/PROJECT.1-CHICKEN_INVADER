@@ -8,7 +8,7 @@ Bullet::Bullet(bool fromplayer, float damage, sf::Vector2f pos)
 	shape.setOrigin(sf::Vector2f(shape.getRadius(), shape.getRadius()));
 	shape.setPosition(pos);
 	shape.setFillColor(fromplayer ? sf::Color::Red : sf::Color::White);
-	speed = 300;
+	speed = fromPlayer ? 300 : 100;
 	alive = true;
 }
 

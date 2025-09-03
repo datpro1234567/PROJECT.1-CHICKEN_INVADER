@@ -34,11 +34,12 @@ void ChickenInvader::bulletBehavior(std::vector<Bullet>& bullets, float dt, floa
 		bullet.reachBorder(width);
 	}
 }
-void ChickenInvader::enemyBehavior(std::vector<Enemy>& enemys,std::vector<Bullet>& bullets, float dt, std::mt19937& gen)
+void ChickenInvader::enemyBehavior(std::vector<Enemy>& enemys,std::vector<Bullet>& bullets, float dt, std::mt19937& gen,float width)
 {
 	for (Enemy& enemy : enemys)
 	{
 		enemy.fireBullet(bullets, dt, gen);
+		enemy.move(dt, width, enemys);
 	}
 }
 
@@ -82,10 +83,55 @@ void ChickenInvader::bulletTouchEnemy(std::vector<Bullet>& bullets, std::vector<
 							enemy.setAlive(false);
 						}
 						bullet.setAlive(false);
+						break;
 					}
 				}
 			}
 		}
+	}
+}
+void ChickenInvader::bulletTouchPlayer(std::vector<Bullet>& bullets, std::vector<Player>& players)
+{
+	for (Bullet& bullet : bullets)
+	{
+		if (!bullet.getFromPlayer() && bullet.getAlive())
+		{
+			for (Player& player : players)
+			{
+				if (player.getAlive())
+				{
+					if (bullet.getShape().getGlobalBounds().intersects(player.getShape().getGlobalBounds()))
+					{
+						player.setHealth(player.getHealth() - bullet.getDamage());
+						if (player.getHealth() <= 0)
+						{
+							player.setAlive(false);
+							std::cout << player.getAlive();
+						}
+						bullet.setAlive(false);
+						break;	
+					}
+				}
+			}
+		}
+	}
+}
+void ChickenInvader::playerTouchEnemy(std::vector<Player>& players, std::vector<Enemy>& enemys)
+{
+	for (Player& player : players)
+	{
+		if (player.getAlive())
+			for (Enemy& enemy : enemys)
+			{
+				if (enemy.getAlive())
+				{
+					if (player.getShape().getGlobalBounds().intersects(enemy.getShape().getGlobalBounds()))
+					{
+						player.setAlive(false);
+						enemy.setAlive(false);
+					}
+				}
+			}
 	}
 }
 
@@ -96,6 +142,27 @@ void ChickenInvader::deleteDeadBullet(std::vector<Bullet>& bullets)
 void ChickenInvader::deleteDeadEnemy(std::vector<Enemy>& enemys)
 {
 	enemys.erase(std::remove_if(enemys.begin(), enemys.end(), [](Enemy& enemy) { return !enemy.getAlive(); }), enemys.end());
+}
+void ChickenInvader::deleteDeadPlayer(std::vector<Player>& players)
+{
+	players.erase(std::remove_if(players.begin(), players.end(), [](Player& player) {return !player.getAlive(); }), players.end());
+}
+
+void ChickenInvader::closeGame(std::vector<Player>& players, sf::RenderWindow& window)
+{
+	bool anyAlive = false;
+	for (Player& player : players)
+	{
+		if (player.getAlive())
+		{
+			anyAlive = true;
+			break;
+		}
+	}
+	if (!anyAlive)
+	{
+		window.close();
+	}
 }
 
 void ChickenInvader::game1()
@@ -119,10 +186,12 @@ void ChickenInvader::game1()
 	std::vector<Enemy> enemys = createArrayEnemy(height, width, row, col);
 
 	std::vector<Bullet> bullets;
+
 	std::random_device rd;
 	std::mt19937 gen(rd());
 
 	sf::Clock clock;
+
 	while (window.isOpen())
 	{
 		float dt = clock.restart().asSeconds();
@@ -136,12 +205,17 @@ void ChickenInvader::game1()
 
 		playerBehavior(players, dt, width, height, bullets);
 		bulletBehavior(bullets, dt, width);
-		enemyBehavior(enemys, bullets, dt, gen);
+		enemyBehavior(enemys, bullets, dt, gen,width);
 
 		bulletTouchEnemy(bullets, enemys);
+		bulletTouchPlayer(bullets, players);
+		playerTouchEnemy(players, enemys);
 
 		deleteDeadBullet(bullets);
 		deleteDeadEnemy(enemys);
+		deleteDeadPlayer(players);
+
+		closeGame(players, window);
 
 		window.clear(sf::Color(30,30,40));
 		drawPlayer(players, window);

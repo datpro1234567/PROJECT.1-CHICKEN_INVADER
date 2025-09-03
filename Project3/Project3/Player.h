@@ -22,13 +22,18 @@ public:
 	
 	sf::RectangleShape getShape();
 	void setShape(sf::RectangleShape shape);
+	void setAlive(bool alive);
+	bool getAlive();
+	void setHealth(float health);
+	float getHealth();
+
 
 	void move(float dt);
 	void reachBorder(float width, float height);
 	void fireBullet(float dt, std::vector<Bullet>& bullets);
 	void reloadAmmo(float dt, int& ammo);
 
-private:
+protected:
 	sf::RectangleShape shape;
 
 	float health, range, damage, speed, reload, attack_speed

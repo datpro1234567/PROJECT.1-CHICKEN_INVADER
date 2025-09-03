@@ -9,12 +9,13 @@ Player::Player(sf::Vector2f pos)
 	damage = 15;
 	ammo = 5;
 	ammo_holder = ammo;
-	speed = 500;
+	speed = 400;
 	reload = 5;
 	reload_count = 0;
 	isReload = false;
 	attack_speed = 3;
 	attack_speed_count = 3;
+	alive = true;
 	shape.setPosition(pos);
 
 	shootBF = makePewSound();
@@ -45,6 +46,23 @@ void Player::setShape(sf::RectangleShape shape)
 {
 	this->shape = shape;
 }
+void Player::setAlive(bool alive)
+{
+	this->alive = alive;
+}
+bool Player::getAlive()
+{
+	return alive;
+}
+void Player::setHealth(float health)
+{
+	this->health = health;
+}
+float Player::getHealth()
+{
+	return health;
+}
+
 void Player::move(float dt)
 {
 	if (sf::Keyboard::isKeyPressed(up))
