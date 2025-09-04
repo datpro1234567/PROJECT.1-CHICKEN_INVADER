@@ -17,13 +17,13 @@ std::vector<Enemy> ChickenInvader::createArrayEnemy(float height, float width, i
 	return enemys;
 }
 
-void ChickenInvader::playerBehavior(std::vector<Player>& players, float dt, float width, float height, std::vector<Bullet>& bullets)
+void ChickenInvader::playerBehavior(std::vector<Player>& players, float dt, float width, float height, std::vector<Bullet>& bullets,sf::Window& window)
 {
 	for (Player& player : players)
 	{
 		player.move(dt);
 		player.reachBorder(width, height);
-		player.fireBullet(dt, bullets);
+		player.fireBullet(dt, bullets,window);
 	}
 }
 void ChickenInvader::bulletBehavior(std::vector<Bullet>& bullets, float dt, float width)
@@ -178,6 +178,7 @@ void ChickenInvader::game1()
 		, sf::Keyboard::D, sf::Keyboard::F, sf::Keyboard::G, sf::Color::Red, shape.getPosition());
 	Player player2(sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left
 		, sf::Keyboard::Right, sf::Keyboard::Numpad1, sf::Keyboard::Numpad2, sf::Color::Magenta, shape.getPosition());
+
 	std::vector<Player> players;
 	players.push_back(player1);
 	players.push_back(player2);
@@ -192,6 +193,7 @@ void ChickenInvader::game1()
 
 	sf::Clock clock;
 
+	//window.setKeyRepeatEnabled(false);
 	while (window.isOpen())
 	{
 		float dt = clock.restart().asSeconds();
@@ -201,9 +203,13 @@ void ChickenInvader::game1()
 		{
 			if (ev.key.code == sf::Keyboard::Escape)
 				window.close();
+			for (Player& player : players)
+			{
+				player.checkReadyToFire(ev);
+			}
 		}
 
-		playerBehavior(players, dt, width, height, bullets);
+		playerBehavior(players, dt, width, height, bullets,window);
 		bulletBehavior(bullets, dt, width);
 		enemyBehavior(enemys, bullets, dt, gen,width);
 

@@ -27,11 +27,11 @@ public:
 	void setHealth(float health);
 	float getHealth();
 
-
 	void move(float dt);
 	void reachBorder(float width, float height);
-	void fireBullet(float dt, std::vector<Bullet>& bullets);
+	void fireBullet(float dt, std::vector<Bullet>& bullets, sf::Window& window);
 	void reloadAmmo(float dt, int& ammo);
+	void checkReadyToFire(sf::Event& ev);
 
 protected:
 	sf::RectangleShape shape;
@@ -42,4 +42,6 @@ protected:
 	int ammo, ammo_holder;//ammo_holder use for support ammo
 	bool isReload;// use for support reload sound
 	bool alive;
+
+	bool readyFire;//use to support function fireBullet
 };

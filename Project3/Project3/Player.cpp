@@ -17,6 +17,7 @@ Player::Player(sf::Vector2f pos)
 	attack_speed_count = 3;
 	alive = true;
 	shape.setPosition(pos);
+	readyFire = false;
 
 	shootBF = makePewSound();
 	shootS.setBuffer(shootBF);
@@ -88,27 +89,28 @@ void Player::reachBorder(float width, float height)
 		p.y = height - s.y / 2;
 	shape.setPosition(p);
 }
-void Player::fireBullet(float dt, std::vector<Bullet>& bullets)
+void Player::fireBullet(float dt, std::vector<Bullet>& bullets,sf::Window& window)
 {
 	if (ammo == 0)
 	{
 		reloadAmmo(dt, ammo);
+		readyFire = false;
 		if(ammo==0)
 			return;
 		attack_speed_count = 3;
 	}
 	attack_speed_count += dt;
-	if (attack_speed_count >= 1.f/attack_speed)
-	{
-		if (sf::Keyboard::isKeyPressed(fire))
-		{
-			bullets.emplace_back(Bullet(true,damage, shape.getPosition()));
-			ammo -= 1;
 
-			shootS.stop();
-			shootS.play();
-		}
+	if ( readyFire && attack_speed_count >= 1.f / attack_speed)
+	{
+		bullets.emplace_back(Bullet(true, damage, shape.getPosition()));
+		ammo -= 1;
+
+		shootS.stop();
+		shootS.play();
+
 		attack_speed_count = 0;
+		readyFire = false;
 	}
 }
 void Player::reloadAmmo(float dt, int& ammo)
@@ -129,4 +131,9 @@ void Player::reloadAmmo(float dt, int& ammo)
 		isReload = false;
 		return;
 	}
+}
+void Player::checkReadyToFire(sf::Event& ev)
+{
+	if (ev.type == sf::Event::KeyPressed && ev.key.code == fire)
+		readyFire = true;
 }
