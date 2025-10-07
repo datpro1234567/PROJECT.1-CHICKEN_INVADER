@@ -2,8 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "Bullet.h"
 #include "Sound.h"
+class Bullet;
 
 #include <vector>
 #include <iostream>
@@ -20,28 +20,50 @@ public:
 	Player(sf::Keyboard::Key up, sf::Keyboard::Key down, sf::Keyboard::Key left, sf::Keyboard::Key right,
 		sf::Keyboard::Key fire, sf::Keyboard::Key ult, sf::Color color,sf::Vector2f pos);
 	
-	sf::RectangleShape getShape();
-	void setShape(sf::RectangleShape shape);
-	void setAlive(bool alive);
-	bool getAlive();
-	void setHealth(float health);
-	float getHealth();
+	virtual void setHealthHolder(float health_holder);
+	virtual void setRange(float range);
+	virtual void setHealth(float health);
+	virtual void setShape(sf::ConvexShape shape);
+	virtual void setAlive(int alive);
+	virtual void setBulletSpeed(float bulletSpeed);
+	virtual void setAttackSpeed(float attackSpeed);
+	virtual void setLevel(int level);
+	virtual void setDamage(float damage);
+	virtual void setAmmo(int ammo);
+	virtual void setAmmoHolder(int ammoHolder);
 
-	void move(float dt);
-	void reachBorder(float width, float height);
-	void fireBullet(float dt, std::vector<Bullet>& bullets, sf::Window& window);
-	void reloadAmmo(float dt, int& ammo);
-	void checkReadyToFire(sf::Event& ev);
+	virtual sf::ConvexShape getShape();
+	virtual int getAlive();
+	virtual float getHealth();
+	virtual float getHealthHolder();
+	virtual bool getReloading();
+	virtual float getReload();
+	virtual float getReloadCount();
+	virtual float getAmmo();
+	virtual float getAmmoHolder();
+	virtual float getRange();
+	virtual float getRangeHolder();
+	virtual float getBulletSpeed();
+	virtual float getAttackSpeed();
+	virtual int getLevel();
+	virtual float getDamage();
 
+	virtual void move(float dt);
+	virtual void reachBorder(float width, float height);
+	virtual void fireBullet(float dt, std::vector<Bullet>& bullets);
+	virtual void reloadAmmo(float dt, int& ammo);
+	virtual void checkReadyToFire(sf::Event& ev);
 protected:
-	sf::RectangleShape shape;
+	sf::ConvexShape shape;
 
-	float health, range, damage, speed, reload, attack_speed
+	float health, range, damage, speed, reload, attack_speed, bulletSpeed
+		, rangeHolder
+		,health_holder//use for support health
 		, reload_count//use for support reload
 		, attack_speed_count;//use for support attack_speed
-	int ammo, ammo_holder;//ammo_holder use for support ammo
-	bool isReload;// use for support reload sound
-	bool alive;
-
+	int ammo, ammoHolder;//ammo_holder use for support ammo
+	bool reloading;// use for support reload sound
+	int alive;
 	bool readyFire;//use to support function fireBullet
+	int level;
 };

@@ -1,23 +1,32 @@
 #include "Player.h"
+#include "Bullet.h"
+
 
 Player::Player(sf::Vector2f pos)
 {
-	shape.setSize(sf::Vector2f(45.f, 55.f));
-	shape.setOrigin(sf::Vector2f(shape.getSize().x / 2, shape.getSize().y / 2));
-	health = 100;
-	range = 500;
-	damage = 15;
-	ammo = 5;
-	ammo_holder = ammo;
-	speed = 400;
-	reload = 5;
+	shape.setPointCount(11);
+	shape.setPoint(0, sf::Vector2f(-5.f, -20.f));
+	shape.setPoint(1, sf::Vector2f(0, -24));
+	shape.setPoint(2, sf::Vector2f(5.f, -20.f));
+	shape.setPoint(3, sf::Vector2f(5.f, 0.f));
+	shape.setPoint(4, sf::Vector2f(25.f, 15.f));
+	shape.setPoint(5, sf::Vector2f(15.f, 15.f));
+	shape.setPoint(6, sf::Vector2f(15.f, 20.f));
+	shape.setPoint(7, sf::Vector2f(-15.f, 20.f));
+	shape.setPoint(8, sf::Vector2f(-15.f, 15.f));
+	shape.setPoint(9, sf::Vector2f(-25.f, 15.f));
+	shape.setPoint(10, sf::Vector2f(-5.f, 0.f));
+	auto bound = shape.getLocalBounds();
+	shape.setOrigin(bound.left + bound.width / 2, bound.top + bound.height / 2);
+	speed = 450;
+	bulletSpeed = 300;
 	reload_count = 0;
-	isReload = false;
-	attack_speed = 3;
-	attack_speed_count = 3;
-	alive = true;
+	reloading = false;
+	attack_speed_count = 100;//intial shoot is immediately
+	alive = 1;
 	shape.setPosition(pos);
 	readyFire = false;
+	level = 1;
 
 	shootBF = makePewSound();
 	shootS.setBuffer(shootBF);
@@ -39,19 +48,19 @@ Player::Player(sf::Keyboard::Key up, sf::Keyboard::Key down, sf::Keyboard::Key l
 	shape.setFillColor(color);
 }
 
-sf::RectangleShape Player::getShape()
+sf::ConvexShape Player::getShape()
 {
 	return shape;
 }
-void Player::setShape(sf::RectangleShape shape)
+void Player::setShape(sf::ConvexShape shape)
 {
 	this->shape = shape;
 }
-void Player::setAlive(bool alive)
+void Player::setAlive(int alive)
 {
 	this->alive = alive;
 }
-bool Player::getAlive()
+int Player::getAlive()
 {
 	return alive;
 }
@@ -62,6 +71,86 @@ void Player::setHealth(float health)
 float Player::getHealth()
 {
 	return health;
+}
+float Player::getHealthHolder()
+{
+	return health_holder;
+}
+void Player::setHealthHolder(float health_holder)
+{
+	this->health_holder = health_holder;
+}
+bool Player::getReloading()
+{
+	return reloading;
+}
+float Player::getReload()
+{
+	return reload;
+}
+float Player::getReloadCount()
+{
+	return reload_count;
+}
+float Player::getAmmo()
+{
+	return ammo;
+}
+float Player::getAmmoHolder()
+{
+	return ammoHolder;
+}
+float Player::getRange()
+{
+	return range;
+}
+void Player::setRange(float range)
+{
+	this->range = range;
+}
+float Player::getRangeHolder()
+{
+	return rangeHolder;
+}
+float Player::getBulletSpeed()
+{
+	return bulletSpeed;
+}
+void Player::setBulletSpeed(float bulletSpeed)
+{
+	this->bulletSpeed = bulletSpeed;
+}
+void Player::setAttackSpeed(float attackSpeed)
+{
+	this->attack_speed = attackSpeed;
+}
+float Player::getAttackSpeed()
+{
+	return attack_speed;
+}
+void Player::setLevel(int level)
+{
+	this->level = level;
+}
+int Player::getLevel()
+{
+	return level;
+}
+float Player::getDamage()
+{
+	return damage;
+}
+void Player::setDamage(float damage)
+{
+	this->damage = damage;
+}
+void Player::setAmmo(int ammo)
+{
+	this->ammo = ammo;
+}
+void Player::setAmmoHolder(int ammoHolder)
+{
+	this->ammoHolder = ammoHolder;
 }
 
 void Player::move(float dt)
@@ -78,47 +167,25 @@ void Player::move(float dt)
 void Player::reachBorder(float width, float height)
 {
 	auto p = shape.getPosition();
-	auto s = shape.getSize();
-	if (p.x < 0 + s.x / 2)
-		p.x = 0 + s.x / 2;
-	if (p.x > width - s.x / 2)
-		p.x = width - s.x / 2;
-	if (p.y < 0 + s.y / 2)
-		p.y = 0 + s.y / 2;
-	if (p.y > height - s.y / 2)
-		p.y = height - s.y / 2;
+	auto b = shape.getLocalBounds();
+
+	if (p.x < 0 +  b.width/ 2)
+		p.x = 0 + b.width / 2;
+	if (p.x > width - b.width / 2)
+		p.x = width - b.width / 2;
+	if (p.y < 0 + b.height / 2)
+		p.y = 0 + b.height / 2;
+	if (p.y > height - b.height / 2)
+		p.y = height - b.height / 2;
 	shape.setPosition(p);
 }
-void Player::fireBullet(float dt, std::vector<Bullet>& bullets,sf::Window& window)
-{
-	if (ammo == 0)
-	{
-		reloadAmmo(dt, ammo);
-		readyFire = false;
-		if(ammo==0)
-			return;
-		attack_speed_count = 3;
-	}
-	attack_speed_count += dt;
-
-	if ( readyFire && attack_speed_count >= 1.f / attack_speed)
-	{
-		bullets.emplace_back(Bullet(true, damage, shape.getPosition()));
-		ammo -= 1;
-
-		shootS.stop();
-		shootS.play();
-
-		attack_speed_count = 0;
-		readyFire = false;
-	}
-}
+void Player::fireBullet(float dt, std::vector<Bullet>& bullets) {}
 void Player::reloadAmmo(float dt, int& ammo)
 {
 	reload_count += dt;
-	if (!isReload)
+	if (!reloading)
 	{
-		isReload = true;
+		reloading = true;
 		reloadS.stop();
 		reloadS.play();
 	}
@@ -126,9 +193,9 @@ void Player::reloadAmmo(float dt, int& ammo)
 	{
 		reloadS.stop();
 		reloadS.play();
-		ammo = ammo_holder;
+		ammo = ammoHolder;
 		reload_count = 0;
-		isReload = false;
+		reloading = false;
 		return;
 	}
 }

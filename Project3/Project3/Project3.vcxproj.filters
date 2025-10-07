@@ -36,6 +36,9 @@
     <ClCompile Include="AirCraft.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Upgrading.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -47,13 +50,13 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AirCraft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Upgrading.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

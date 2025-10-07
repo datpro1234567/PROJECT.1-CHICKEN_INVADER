@@ -1,2 +1,6 @@
 ﻿  AirCraft.cpp
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\Bullet.h(56,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'AirCraft.cpp')
+  
+C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\Project3\AirCraft.cpp(139,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Project3.vcxproj -> C:\Users\User\OneDrive\Desktop\TRUE COLLECTION\CHICKEN_INVADER\PROJECT3\x64\Debug\Project3.exe
